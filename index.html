@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>ZYNEX CLOUD</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#fff;background:linear-gradient(145deg,#101a2d,#080b12 65%);height:100vh;overflow:hidden}
+.status{height:42px;padding:13px 22px;font-size:13px;display:flex;justify-content:space-between}
+.header{padding:22px 24px}.brand{font-size:27px;font-weight:800;letter-spacing:3px}.sub{color:#9ba9c2;font-size:12px;margin-top:5px}
+.clock{font-size:48px;font-weight:300;margin-top:30px}.date{color:#a9b5c8}
+.search{margin:22px 20px;padding:15px;border-radius:18px;background:#ffffff16;color:#aebbd0}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 10px;padding:10px 18px}
+.app{text-align:center;font-size:11px;color:#dce5f5}.icon{width:54px;height:54px;margin:0 auto 7px;border-radius:17px;display:grid;place-items:center;font-size:24px;background:linear-gradient(145deg,#425d87,#182943);box-shadow:0 8px 20px #0005}
+.panel{display:none;position:absolute;inset:0;background:#101827f5;padding:55px 22px;overflow:auto}.panel h2{margin-top:0}.close{float:right;background:#ffffff20;border:0;color:white;padding:9px 14px;border-radius:12px}
+.tile{padding:16px;margin:10px 0;background:#ffffff12;border-radius:15px}.dock{position:absolute;bottom:22px;left:20px;right:20px;padding:14px;border-radius:25px;background:#ffffff20;display:flex;justify-content:space-around}
+button{color:white;border:0;cursor:pointer}.dock button{background:transparent;font-size:22px}
+</style>
+</head>
+<body>
+<div class="status"><span>9:41</span><span>● ● ▰</span></div>
+<div class="header"><div class="brand">ZYNEX CLOUD</div><div class="sub">PERSONAL CLOUD INTERFACE</div><div class="clock" id="clock">9:41</div><div class="date" id="date"></div></div>
+<div class="search">⌕　Search apps</div>
+<div class="grid">
+<div class="app" onclick="openPanel('Phone')"><div class="icon">☎</div>Phone</div>
+<div class="app" onclick="openPanel('Messages')"><div class="icon">✉</div>Messages</div>
+<div class="app" onclick="openPanel('Browser')"><div class="icon">🌐</div>Browser</div>
+<div class="app" onclick="openPanel('Files')"><div class="icon">📁</div>Files</div>
+<div class="app" onclick="openPanel('Settings')"><div class="icon">⚙</div>Settings</div>
+<div class="app" onclick="openPanel('Gallery')"><div class="icon">▧</div>Gallery</div>
+<div class="app" onclick="openPanel('Play Store')"><div class="icon">▶</div>Play Store</div>
+<div class="app" onclick="openPanel('About')"><div class="icon">ⓘ</div>About</div>
+</div>
+<div class="dock"><button onclick="openPanel('Phone')">☎</button><button onclick="openPanel('Browser')">🌐</button><button onclick="openPanel('Files')">📁</button><button onclick="openPanel('Settings')">⚙</button></div>
+<div class="panel" id="panel"><button class="close" onclick="closePanel()">Close ✕</button><h2 id="title"></h2><div id="content"></div></div>
+<script>
+const info={
+'Phone':'Phone app preview. Calling is not available in this simulator.',
+'Messages':'Messages app preview. Sending messages is not available.',
+'Browser':'Browser preview. This demo does not provide internet browsing.',
+'Files':'Your simulated files space. No Android files or APKs are stored here.',
+'Settings':'<div class="tile">Network　　Demo</div><div class="tile">Display　　Dark</div><div class="tile">System　　ZYNEX UI</div>',
+'Gallery':'Gallery preview. No photos are included.',
+'Play Store':'This is only a visual Play Store icon. APK installation is not supported.',
+'About':'<div class="tile">ZYNEX CLOUD<br>Version 1.0<br><br>Android-style interface simulator for iPhone.<br><b>Not an Android emulator; cannot run APK files.</b></div>'
+};
+function openPanel(name){document.getElementById('title').textContent=name;document.getElementById('content').innerHTML=info[name]||'';document.getElementById('panel').style.display='block'}
+function closePanel(){document.getElementById('panel').style.display='none'}
+function tick(){let d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});document.getElementById('date').textContent=d.toLocaleDateString([], {weekday:'long',month:'long',day:'numeric'})}
+tick();setInterval(tick,30000);
+</script>
+</body></html>
